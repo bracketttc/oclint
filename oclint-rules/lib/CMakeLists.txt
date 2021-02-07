@@ -15,17 +15,24 @@ IF (MINGW)
         helper/SuppressHelper.cpp
         util/ASTUtil.cpp
         util/StdUtil.cpp)
-    TARGET_LINK_LIBRARIES(OCLintAbstractRule
-        OCLintCore
-        OCLintRuleSet
-        ${CLANG_LIBRARIES}
-        ${REQ_LLVM_LIBRARIES}
-    )
     SET_TARGET_PROPERTIES(OCLintAbstractRule
         PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin
     )
-
-    TARGET_LINK_LIBRARIES(OCLintAbstractRule LINK_INTERFACE_LIBRARIES OCLintRuleSet)
 ELSE()
     ADD_LIBRARY(OCLintAbstractRule ${AbstractSource})
+    TARGET_LINK_LIBRARIES(OCLintAbstractRule
+        PUBLIC
+        OCLintHelper
+    )
 ENDIF()
+TARGET_INCLUDE_DIRECTORIES(OCLintAbstractRule
+    PUBLIC
+    ../include
+)
+TARGET_LINK_LIBRARIES(OCLintAbstractRule
+    PUBLIC
+    OCLintCore
+    OCLintRuleSet
+    ${CLANG_LIBRARIES}
+    ${REQ_LLVM_LIBRARIES}
+)

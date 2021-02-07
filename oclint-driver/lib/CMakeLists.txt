@@ -9,3 +9,16 @@ ADD_LIBRARY(OCLintDriver
     RulesetBasedAnalyzer.cpp
     RulesetFilter.cpp
     )
+TARGET_LINK_LIBRARIES(OCLintDriver
+    PUBLIC
+    OCLintCore
+    OCLintAbstractRule
+    clangStaticAnalyzerFrontend
+    clangAST
+    clangFrontend
+    clangTooling
+    )
+TARGET_INCLUDE_DIRECTORIES(OCLintDriver
+    PUBLIC
+    ../include
+    )

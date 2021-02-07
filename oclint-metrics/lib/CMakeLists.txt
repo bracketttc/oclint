@@ -8,10 +8,6 @@ SET (MetricSource
 
 IF (MINGW)
     ADD_LIBRARY(OCLintMetric SHARED ${MetricSource})
-    TARGET_LINK_LIBRARIES(OCLintMetric
-        ${CLANG_LIBRARIES}
-        ${REQ_LLVM_LIBRARIES}
-    )
     SET_TARGET_PROPERTIES(OCLintMetric
         PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin
     )
@@ -24,3 +20,11 @@ IF (MINGW)
 ELSE()
     ADD_LIBRARY(OCLintMetric ${MetricSource})
 ENDIF()
+TARGET_INCLUDE_DIRECTORIES(OCLintMetric
+    PUBLIC
+    ../include
+)
+TARGET_LINK_LIBRARIES(OCLintMetric
+    ${CLANG_LIBRARIES}
+    ${REQ_LLVM_LIBRARIES}
+)

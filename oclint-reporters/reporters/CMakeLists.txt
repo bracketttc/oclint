@@ -10,6 +10,10 @@ MACRO(build_dynamic_reporter name)
 				   RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/reporters.dl
         )
 
+    TARGET_INCLUDE_DIRECTORIES(${name}Reporter
+        PUBLIC
+        ../../include
+        )
     TARGET_LINK_LIBRARIES(${name}Reporter
         OCLintCore
         )

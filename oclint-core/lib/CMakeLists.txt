@@ -9,6 +9,10 @@ ADD_LIBRARY(OCLintCore
     Violation.cpp
     ViolationSet.cpp
     )
+TARGET_INCLUDE_DIRECTORIES(OCLintCore
+    PUBLIC
+    ../include
+    )
 
 IF (${CMAKE_SYSTEM_NAME} MATCHES "Win")
 ADD_LIBRARY(OCLintRuleSet SHARED
@@ -24,3 +28,7 @@ ADD_LIBRARY(OCLintRuleSet
     RuleSet.cpp
     )
 ENDIF()
+TARGET_INCLUDE_DIRECTORIES(OCLintRuleSet
+    PUBLIC
+    ../include
+    )
